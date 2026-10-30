@@ -14032,7 +14032,7 @@
             // Keep the measured model available even when the overlapping-model filter misses it.
             const argon = MODEL_OVERRIDES.get('gemini-4-argon');
             if (argon && !RS.models.some(model => model.slug === argon.slug))
-                RS.models = ensureUniqueShorts([...RS.models, { ...argon }]);
+                RS.models = ensureUniqueShorts([{ ...argon }, ...RS.models]);
             // 도중에 크랙 목록이 바뀌었으면 '다 만들었음'으로 두지 않는다 → 다음 갱신이 새 목록으로 다시 만든다
             RS.discoveryAt = (RS.listGen || 0) === gen ? Date.now() : 0;
             if (!RS.discoveryAt) RS.pendingRefresh = true;
