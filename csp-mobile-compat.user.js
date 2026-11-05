@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         🎨 Crack Scene Painter 모바일 호환
 // @namespace    csp-mobile-compat-jhpink0430
-// @version      1.0.0
-// @description  원본 CSP 5.6.0의 삽화 갤러리와 설정을 모바일 화면에서 열고 사용할 수 있게 합니다. 원본과 함께 켜세요.
+// @version      1.0.1
+// @description  원본 CSP 5.6.0의 삽화 갤러리·설정·생성 버튼을 모바일 화면에서 사용할 수 있게 합니다. 원본과 함께 켜세요.
 // @match        https://crack.wrtn.ai/*
 // @run-at       document-idle
 // @grant        none
@@ -128,12 +128,18 @@
   #csp-v35-root .studio .inspector-body { flex: 0 0 auto; overflow: visible; }
   #csp-v35-root .canvas-tools { opacity: 1; }
   #csp-v35-root .v35-app > .bottom {
+    height: 64px !important; flex-basis: 64px !important;
     gap: 6px; overflow-x: auto; overflow-y: hidden;
     -webkit-overflow-scrolling: touch; flex-shrink: 0;
-    padding-bottom: env(safe-area-inset-bottom, 0px);
+    padding: 6px 8px max(6px, env(safe-area-inset-bottom, 0px));
   }
   #csp-v35-root .v35-app > .bottom > * { flex-shrink: 0; }
   #csp-v35-root .v35-app > .bottom .grow { min-width: 2px; }
+  #csp-v35-root .v35-app > .bottom #v35-generate {
+    order: -2; flex: 0 0 min(54vw, 240px); height: 46px !important;
+    position: sticky; left: 0; z-index: 2;
+  }
+  #csp-v35-root .v35-app > .bottom #v35-reroll { order: -1; }
 }
 `;
     const style = document.createElement('style');
